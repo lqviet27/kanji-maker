@@ -17,7 +17,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173', 
     'http://localhost:6969',
-    'https://kanji-maker.vercel.app',  
+    'https://kanji-maker-frontend.vercel.app',  
     'https://*.vercel.app' 
   ],
   credentials: true
