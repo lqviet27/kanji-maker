@@ -1,7 +1,7 @@
 const SVGtoPDF = require('svg-to-pdfkit');
 const { processInput } = require('../utils/kanjiUtils');
 const { loadKanjiSVG, createStrokeSVG } = require('../utils/kanjiUtils');
-const { getKanjiDetailsFromAI } = require('../services/aiService');
+const { getKanjiDetailsFromDB } = require('../services/kanjiService');
 const { createPDFDocument, addPDFHeader, drawGuideLines, checkPageBreak, MarginPDF } = require('../utils/pdfUtils');
 const config = require('../config/config');
 
@@ -20,7 +20,7 @@ const generatePDF = async (req, res) => {
     console.log(`>>>> Kanji list of vocal: ${kanjiListOfVocal.join('| ')}`);
     console.log(`>>>> Kanji list: ${kanjiList}`);
 
-    const kanjiDetailList = await getKanjiDetailsFromAI(kanjiList);
+    const kanjiDetailList = await getKanjiDetailsFromDB(kanjiList);
     const kanjiDetailMap = new Map(kanjiDetailList.map(item => [item.kanji, item]));
     
     const doc = createPDFDocument();
