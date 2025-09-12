@@ -1,0 +1,41 @@
+# Data folders (không cần deploy)
+kanji_data_set
+Noto_Sans_JP
+
+# Dependencies
+node_modules
+*/node_modules
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Build outputs
+dist
+build
+*/dist
+*/build
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
