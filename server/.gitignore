@@ -11,8 +11,7 @@ lerna-debug.log*
 kanji_data_set
 
 
-fonts
-kanji
+
 public
 node_modules
 dist
