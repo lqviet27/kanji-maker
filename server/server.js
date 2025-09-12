@@ -20,7 +20,10 @@ app.use(cors({
     'https://kanji-maker-frontend.vercel.app',  
     'https://*.vercel.app' 
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  
+  allowedHeaders: ['Content-Type', 'Authorization'],     
+  optionsSuccessStatus: 200
 }));
 app.use(express.json());
 
