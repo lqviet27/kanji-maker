@@ -11,6 +11,7 @@ import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
+import './Input.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
@@ -21,6 +22,9 @@ const Input = () => {
     const [pdfUrl, setPdfUrl] = useState(null);
     const [numPages, setNumPages] = useState(null);
     const [numRows, setNumRows] = useState(1);
+
+    const tokens = text.split(/[;；]/).map(t => t.trim()).filter(Boolean);
+    const badSep = /[,，、]/.test(text) && !/[;；]/.test(text);
  
     const handleSubmit = async () => {
         setLoading(true);
@@ -63,19 +67,45 @@ const Input = () => {
                         <h3 className='mb-3 text-primary'>Nhập từ vựng </h3>
                         <Form>
                             <Form.Group className="mb-3">
-                            <Form.Label className="fw-bold mb-2">Nhập từ vựng</Form.Label>
-                                <div className="alert alert-info py-2 mb-2" role="alert">
-                                    <i className="bi bi-info-circle me-2"></i>
-                                    <strong>Lưu ý:</strong> Nếu nhập nhiều từ vựng thì ngăn cách bởi dấu <code>;</code>
+                                <Form.Label className="fw-bold mb-2">Nhập từ vựng</Form.Label>
+                                {/* Callout rất nổi bật + pulse */}
+                                <div
+                                    className={`alert bg-warning-subtle border border-warning text-warning-emphasis py-2 mb-2 attention`}
+                                    role="alert"
+                                >
+                                    <i className="bi bi-exclamation-triangle me-2"></i>
+                                    <strong>Quan trọng:</strong> Nếu nhập nhiều từ vựng, hãy ngăn cách bằng <kbd>;</kbd>
                                 </div>
-                                <Form.Control 
-                                    as="textarea" 
+
+                                {/* Textarea + validate */}
+                                <Form.Control
+                                    as="textarea"
                                     rows={8}
-                                    className="form-control-lg"
+                                    className={`form-control-lg ${badSep ? "is-invalid" : ""}`}
                                     placeholder="Ví dụ: 学校;先生;勉強;日本語"
                                     onChange={(e) => setText(e.target.value)}
                                     value={text}
                                 />
+                                {badSep && (
+                                    <div className="invalid-feedback d-block">
+                                        Bạn đang dùng dấu phẩy <code>,</code>. Vui lòng dùng <kbd>;</kbd> để ngăn cách nhiều từ.
+                                    </div>
+                                )}
+
+                                {/* Preview chip để người dùng thấy ngay cách tách */}
+                                {tokens.length > 0 && (
+                                    <div className="mt-2">
+                                        <small className="text-muted">Xem trước ({tokens.length}):</small>
+                                        <div className="d-flex flex-wrap gap-2 mt-1">
+                                            {tokens.slice(0, 12).map((t, i) => (
+                                                <span key={i} className="badge text-bg-secondary">{t}</span>
+                                            ))}
+                                            {tokens.length > 12 && (
+                                                <span className="badge text-bg-light">+{tokens.length - 12} nữa</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
                             </Form.Group>
 
                             <Form.Group className="mb-3 d-flex">

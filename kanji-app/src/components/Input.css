@@ -1,0 +1,24 @@
+.attention {
+    animation: pulse 1.6s ease-in-out 4;
+    border-radius: .75rem;
+  }
+  
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255, 193, 7, .6); }
+    70%  { box-shadow: 0 0 0 12px rgba(255, 193, 7, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+  }
+  
+  /* Thêm một số style bổ sung để làm đẹp */
+  .badge {
+    font-size: 0.75em;
+  }
+  
+  .is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875em;
+  }
