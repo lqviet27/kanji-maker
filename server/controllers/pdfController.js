@@ -17,7 +17,6 @@ const generatePDF = async (req, res) => {
 
     let { vocalList, kanjiListOfVocal, kanjiList } = processInput(text);
 
-    console.log(`>>>> Kanji list of vocal: ${kanjiListOfVocal.join('| ')}`);
     console.log(`>>>> Kanji list: ${kanjiList}`);
 
     const kanjiDetailList = await getKanjiDetailsFromDB(kanjiList);

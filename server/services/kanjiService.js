@@ -13,7 +13,9 @@ const getKanjiDetailsFromDB = async (kanjiList) => {
       item.hanViet = item.hanViet.toUpperCase();
       return [item.kanji, item];
     }));
-    console.log(resultMap);
+    resultMap.forEach((value, key) => {
+      console.log(`${key}: ${value._id}`);
+    });
     const orderedResults = kanjiList.map(kanji => resultMap.get(kanji) || null);
 
     const missingKanji = kanjiList.filter((kanji, index) => orderedResults[index] === null);
