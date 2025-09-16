@@ -63,12 +63,16 @@ const Input = () => {
                         <h3 className='mb-3 text-primary'>Nhập từ vựng </h3>
                         <Form>
                             <Form.Group className="mb-3">
-                                <Form.Label>Nếu nhập nhiều từ vựng thì ngăn cách bởi dấu ";"</Form.Label>
+                            <Form.Label className="fw-bold mb-2">Nhập từ vựng</Form.Label>
+                                <div className="alert alert-info py-2 mb-2" role="alert">
+                                    <i className="bi bi-info-circle me-2"></i>
+                                    <strong>Lưu ý:</strong> Nếu nhập nhiều từ vựng thì ngăn cách bởi dấu <code>;</code>
+                                </div>
                                 <Form.Control 
                                     as="textarea" 
                                     rows={8}
                                     className="form-control-lg"
-                                    placeholder="Nhập từ vựng tại đây..."
+                                    placeholder="Ví dụ: 学校;先生;勉強;日本語"
                                     onChange={(e) => setText(e.target.value)}
                                     value={text}
                                 />
